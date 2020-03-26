@@ -1,1 +1,26 @@
-<p>header works!</p>
+<mat-form-field *ngIf="spaces && spaces.length>0">
+  <mat-label></mat-label>
+  <mat-select [disableOptionCentering]="true" panelClass="myPanelClass" [(value)]="selectedSpace">
+    <mat-option *ngFor="let space of spaces" [value]="space.id">{{space.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button mat-button class="no-hover-effect" [disableRipple]="true" [matMenuTriggerFor]="profileMenu" *ngIf="globalService.user">
+  <img class="profile-img" src="{{!globalService.user.picture?'assets/images/sample.jpg':globalService.user.picture}}">
+  <span>{{globalService.user.fullName}}</span>
+</button>
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item *ngIf="globalService.user">
+    <img class="profile-img" src="{{!globalService.user.picture?'assets/images/sample.jpg':globalService.user.picture}}">
+    <div class="user-detail">
+      <span> {{globalService.user.fullName}}</span>
+      <small>{{globalService.user.email}}</small>
+    </div>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="languageOptions">{{'languagesetting' | translate}}</button>
+  <mat-menu #languageOptions="matMenu">
+    <button mat-menu-item (click)="changeLang(lang.id)" *ngFor="let lang of languages">{{lang.title}}</button>
+  </mat-menu>
+  <button mat-menu-item>{{'editProfile.edit' | translate}}</button>
+  <button mat-menu-item (click)="authService.logout()">{{'logout'| translate}}</button>
+</mat-menu>

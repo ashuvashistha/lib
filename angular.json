@@ -15,7 +15,12 @@
             "tsConfig": "projects/diva-lib/tsconfig.lib.json",
             "project": "projects/diva-lib/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/diva-lib/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
