@@ -2,5 +2,41 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "diva-lib": {
+      "projectType": "library",
+      "root": "projects/diva-lib",
+      "sourceRoot": "projects/diva-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/diva-lib/tsconfig.lib.json",
+            "project": "projects/diva-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/diva-lib/src/test.ts",
+            "tsConfig": "projects/diva-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/diva-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/diva-lib/tsconfig.lib.json",
+              "projects/diva-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "diva-lib"
 }

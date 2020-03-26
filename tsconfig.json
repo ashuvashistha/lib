@@ -18,6 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "diva-lib": [
+        "dist/diva-lib"
+      ],
+      "diva-lib/*": [
+        "dist/diva-lib/*"
+      ]
+    }
   }
 }
